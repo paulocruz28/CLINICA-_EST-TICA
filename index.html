@@ -109,7 +109,34 @@
         </div>
     </section>
 
-    <section id="equipe" class="section bg-light">
+    <section id="calculadora" class="section bg-light">
+        <div class="container">
+            <h2 class="section-title">Saúde & Bem-Estar</h2>
+            <div class="split-layout">
+                <div class="text-box">
+                    <h3>Monitore seu Índice de Massa Corporal</h3>
+                    <p>A estética corporal caminha junto com a saúde. Utilize nossa ferramenta para verificar seu IMC e entender como podemos auxiliar na sua qualidade de vida.</p>
+                    <ul style="margin-top: 20px; list-style: none;">
+                        <li>✅ Prevenção de obesidade</li>
+                        <li>✅ Planejamento de tratamentos corporais</li>
+                        <li>✅ Melhora na disposição física</li>
+                    </ul>
+                </div>
+                
+                <div class="card" style="max-width: 400px; margin: 0 auto;">
+                    <h4 style="margin-bottom: 20px; color: var(--primary-color);">Calculadora IMC</h4>
+                    <div class="calc-form">
+                        <input type="number" id="peso" placeholder="Peso (kg)" style="width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 5px;">
+                        <input type="number" id="altura" placeholder="Altura (ex: 1.65)" step="0.01" style="width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 5px;">
+                        <button id="btn-calcular" class="btn-hero" style="width: 100%; margin-top: 10px;">Calcular Agora</button>
+                        <div id="resultado-imc" style="margin-top: 20px; font-weight: bold;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="equipe" class="section">
         <div class="container">
             <h2 class="section-title">Conheça a Especialista</h2>
             <div class="team-card">
@@ -118,6 +145,29 @@
                     <h3>Dra. Elizabeth Cruz</h3>
                     <p class="role">Biomédica Esteta | CRBM 12345</p>
                     <p>Especialista em Harmonização Facial e Cosmetologia, com mais de 8 anos de experiência transformando vidas através da estética segura e natural.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="depoimentos" class="section bg-light">
+        <div class="container">
+            <h2 class="section-title">Histórias de Autoestima</h2>
+            <p style="text-align: center; margin-bottom: 40px; max-width: 700px; margin-left: auto; margin-right: auto;">
+                O ODS 3 visa assegurar uma vida saudável e promover o bem-estar. Veja como nossos tratamentos impactaram a saúde mental de nossos pacientes.
+            </p>
+            <div class="grid-cards">
+                <div class="card testimonial-card">
+                    <p class="quote">"Eu não saía de casa por vergonha das cicatrizes de acne. O tratamento da Dra. Elizabeth não curou apenas minha pele, curou minha fobia social."</p>
+                    <h4 class="author">- Mariana S., 24 anos</h4>
+                </div>
+                <div class="card testimonial-card">
+                    <p class="quote">"O gerenciamento do envelhecimento me trouxe de volta a confiança para liderar reuniões no trabalho. É sobre sentir-se bem consigo mesma."</p>
+                    <h4 class="author">- Carla F., 45 anos</h4>
+                </div>
+                <div class="card testimonial-card">
+                    <p class="quote">"As massagens terapêuticas foram essenciais para tratar meu estresse e ansiedade. Um momento de paz na semana."</p>
+                    <h4 class="author">- Juliana P., 32 anos</h4>
                 </div>
             </div>
         </div>
@@ -166,19 +216,36 @@
                     <p>📍 Rua: Algum lugar de Fortaleza - CE</p>
                     <p>⏰ Seg à Sex: 09h às 19h | Sáb: 09h às 13h</p>
                 </div>
+                
                 <form class="contact-form" id="form-agendamento">
                     <input type="text" id="nome" placeholder="Seu Nome" required>
                     <input type="email" id="email" placeholder="Seu E-mail" required>
                     <input type="tel" id="telefone" placeholder="Seu Telefone">
-                    <textarea rows="4" id="mensagem" placeholder="Mensagem ou Procedimento de interesse"></textarea>
-                    <button type="submit" class="btn-hero">Enviar Mensagem</button>
+                    
+                    <select id="queixa" style="width: 100%; padding: 15px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 5px; color: #555;">
+                        <option value="" disabled selected>Qual seu principal objetivo?</option>
+                        <option value="acne">Tratar Acne/Manchas (Saúde da Pele)</option>
+                        <option value="rejuvenescer">Rejuvenescimento (Autoestima)</option>
+                        <option value="corpo">Gordura/Flacidez (Saúde Corporal)</option>
+                        <option value="relaxamento">Relaxamento (Saúde Mental)</option>
+                    </select>
+
+                    <textarea rows="4" id="mensagem" placeholder="Detalhes adicionais..."></textarea>
+                    <button type="submit" class="btn-hero">Solicitar Avaliação</button>
                 </form>
             </div>
         </div>
     </section>
 
     <footer>
-        <p>&copy; 2026 Elizabeth Cruz Estética Avançada. Todos os direitos reservados.</p>
+        <div class="container">
+            <div style="margin-bottom: 20px;">
+                <span style="background: #fff; color: #2E7D32; padding: 5px 15px; border-radius: 4px; font-weight: bold; border: 2px solid #2E7D32;">
+                    Compromisso 💚 ODS 3: Saúde e Bem-Estar
+                </span>
+            </div>
+            <p>&copy; 2026 Elizabeth Cruz Estética Avançada. Todos os direitos reservados.</p>
+        </div>
     </footer>
 
     <script src="script.js"></script>

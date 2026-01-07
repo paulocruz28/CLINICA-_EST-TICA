@@ -35,7 +35,6 @@ body { font-family: var(--font-body); color: var(--text-color); line-height: 1.6
     transition: all 0.3s ease;
 }
 
-/* Classe adicionada via JS ao rolar a página */
 .header.scrolled {
     height: 70px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
@@ -57,35 +56,33 @@ body { font-family: var(--font-body); color: var(--text-color); line-height: 1.6
 .bar { display: block; width: 25px; height: 3px; margin: 5px auto; transition: all 0.3s ease-in-out; background-color: var(--secondary-color); }
 
 /* --- HERO --- */
-.hero {
-    height: 100vh; /* Altura total da tela */
-    
-    /* --- INÍCIO DA MUDANÇA --- */
-    /* O código abaixo faz duas coisas:
-       1. linear-gradient(...): Cria uma camada preta com 50% de transparência (0.5) sobre a foto. 
-          Isso é essencial para o texto branco ficar legível.
-       2. url('...'): É o caminho para a sua imagem.
-    */
-    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('img/banner-clinica.jpeg');
-    
-    /* Garante que a imagem cubra toda a área sem distorcer e fique centralizada */
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    /* --- FIM DA MUDANÇA --- */
+/* No arquivo style.css, substitua o bloco .hero por este: */
 
+.hero {
+    /* Mudei de 100vh para 70vh (70% da tela) */
+    height: 70vh; 
+    
+    /* Adicionei min-height para garantir que não fique muito pequeno em telas grandes */
+    min-height: 500px; 
+
+    /* O restante continua igual */
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('img/banner-clinica.jpeg');
+    background-size: cover;
+    background-position: center; /* Tenta centralizar o foco da imagem */
+    background-repeat: no-repeat;
+    
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
     position: relative;
     color: var(--white);
-    margin-top: 80px; /* Ajuste para o menu fixo não cobrir o topo */
+    margin-top: 80px; 
 }
 
 .hero-overlay {
     position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.4); /* Escurece a imagem para o texto aparecer */
+    background: rgba(0, 0, 0, 0.4);
 }
 .hero-content { position: relative; z-index: 2; padding: 0 20px; }
 .hero-content h1 { font-family: var(--font-title); font-size: 3.5rem; margin-bottom: 20px; }
@@ -120,15 +117,33 @@ img { max-width: 100%; border-radius: 8px; display: block; }
 .post-content { padding: 20px; }
 .read-more { color: var(--primary-color); text-decoration: none; font-weight: bold; display: inline-block; margin-top: 10px; }
 
+/* --- DEPOIMENTOS (ESTILOS EXTRAS) --- */
+.testimonial-card {
+    border-left: 5px solid var(--primary-color);
+    text-align: left;
+}
+.quote {
+    font-style: italic;
+    margin-bottom: 15px;
+    color: #666;
+}
+.author {
+    color: var(--primary-color);
+    font-family: var(--font-title);
+    font-weight: 600;
+}
+
 /* --- FORMULARIO --- */
-.contact-form input, .contact-form textarea { width: 100%; padding: 15px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 5px; font-family: var(--font-body); }
+.contact-form input, .contact-form textarea, .contact-form select { width: 100%; padding: 15px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 5px; font-family: var(--font-body); }
+
+/* --- FOOTER --- */
 footer { background: var(--secondary-color); color: var(--white); text-align: center; padding: 20px; margin-top: 50px; }
+footer .container { display: flex; flex-direction: column; align-items: center; justify-content: center; }
 
 /* --- RESPONSIVIDADE --- */
 @media (max-width: 768px) {
     .hamburger { display: block; z-index: 1001; }
     
-    /* Quando o menu mobile abre */
     .hamburger.active .bar:nth-child(2) { opacity: 0; }
     .hamburger.active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
     .hamburger.active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
@@ -138,12 +153,22 @@ footer { background: var(--secondary-color); color: var(--white); text-align: ce
         flex-direction: column; background-color: var(--white);
         width: 100%; text-align: center; transition: 0.3s;
         box-shadow: 0 10px 10px rgba(0,0,0,0.1);
+        padding: 20px;
     }
 
     .navbar.active { left: 0; }
-
     .navbar a { margin: 16px 0; }
     
     .hero-content h1 { font-size: 2.5rem; }
     .split-layout, .team-card { flex-direction: column; text-align: center; }
+}
+
+/* Adicionar ao final do style.css */
+
+#sobre .img-box img {
+    max-width: 350px; /* Mude este valor para aumentar ou diminuir */
+    width: 100%;      /* Garante que ela não quebre em celulares */
+    margin: 0 auto;   /* Centraliza a imagem na coluna dela */
+    display: block;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15); /* Uma sombra para ficar elegante */
 }
