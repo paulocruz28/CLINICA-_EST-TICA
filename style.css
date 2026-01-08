@@ -262,3 +262,22 @@ footer .container { display: flex; flex-direction: column; align-items: center; 
     color: var(--primary-color);
     font-weight: bold;
 }
+
+/* Adicionar ou atualizar no style.css */
+
+/* Garante que o hover funcione bem nos cards de serviço */
+.card.proc-item:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+    cursor: pointer;
+}
+
+/* Estilo do link 'saiba mais' dentro do card */
+.card .ver-mais {
+    color: var(--primary-color);
+    font-weight: bold;
+    font-size: 0.9rem;
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
