@@ -21,8 +21,8 @@ body {
     /* Adicione esta linha para o fundo geral ficar neutro também */
     background-color: #FDFBF7; /* Um tom bem clarinho, quase branco */
 
-   /* CORREÇÃO: Sem os traços na frente */
-    overflow-x: hidden; 
+   /* Linhas 24 e 25 corrigidas */
+    overflow-x: hidden;
     position: relative;
 }
 
@@ -208,15 +208,28 @@ footer .container { display: flex; flex-direction: column; align-items: center; 
     .hamburger.active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 
     .navbar {
-        position: fixed; left: -100%; top: 70px; gap: 0;
-        flex-direction: column; background-color: var(--white);
-        width: 100%; text-align: center; transition: 0.3s;
+        position: fixed;
+        /* MUDANÇA 1: Coloque left 0 em vez de -100% */
+        left: 0; 
+        top: 70px;
+        gap: 0;
+        flex-direction: column;
+        background-color: var(--white);
+        width: 100%;
+        text-align: center;
+        transition: 0.3s;
         box-shadow: 0 10px 10px rgba(0,0,0,0.1);
         padding: 20px;
+
+        /* MUDANÇA 2: O segredo! Use transform para esconder */
+        transform: translateX(-100%); 
     }
 
-    .navbar.active { left: 0; }
-    .navbar a { margin: 16px 0; }
+    .navbar.active {
+        /* MUDANÇA 3: Traga de volta com transform */
+        transform: translateX(0); 
+        /* left: 0; <--- Apague ou comente essa linha antiga se tiver */
+    }
     
     .hero-content h1 { font-size: 2.5rem; }
     .split-layout, .team-card { flex-direction: column; text-align: center; }
