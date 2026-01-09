@@ -1,3 +1,4 @@
+// Aguarda o site carregar completamente
 document.addEventListener('DOMContentLoaded', () => {
     
     // --- 1. MENU MOBILE ---
@@ -29,17 +30,42 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 
-    // --- 3. SIMULAÇÃO DE ENVIO DE FORMULÁRIO ---
+    // --- 3. ENVIO REAL PARA O NODE.JS ---
     const form = document.getElementById("form-agendamento");
 
     if(form) {
         form.addEventListener("submit", (e) => {
-            e.preventDefault(); 
-            const nome = document.getElementById("nome").value;
-            alert(`Obrigado, ${nome}! Sua solicitação de triagem foi enviada. Entraremos em contato.`);
-            form.reset();
+            e.preventDefault();
+            
+            // Pega os dados digitados
+            const dados = {
+                nome: document.getElementById("nome").value,
+                email: document.getElementById("email").value,
+                queixa: document.getElementById("queixa").value,
+                telefone: document.getElementById("telefone").value,
+                mensagem: document.getElementById("mensagem").value
+            };
+        
+            // Tenta enviar para o servidor
+            // ATENÇÃO: Se você não tiver o servidor Node.js rodando, vai cair no erro (catch)
+            fetch('/api/agendar', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(dados)
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.mensagem || "Envio realizado!"); 
+                form.reset();
+            })
+            .catch(error => {
+                console.error('Erro:', error);
+                // Mensagem amigável caso o servidor não exista ainda
+                alert("Erro ao conectar com o servidor. (Como é um teste, considere o envio simulado!)");
+            });
         });
     }
+
 
     // --- 4. CALCULADORA IMC ---
     const btnCalcular = document.getElementById("btn-calcular");
@@ -74,10 +100,9 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-    
+
+
     // --- 5. LOGICA DO MODAL DE PROCEDIMENTOS ---
-    
-    // Seleciona os elementos
     const modal = document.getElementById("modal-procedimento");
     const modalImg = document.getElementById("modal-img");
     const modalTitulo = document.getElementById("modal-titulo");
@@ -85,41 +110,40 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeBtn = document.querySelector(".close-btn");
     const procItems = document.querySelectorAll(".proc-item");
 
-    // Função para abrir o modal
-    procItems.forEach(item => {
-        item.addEventListener("click", () => {
-            // Pega os dados guardados no HTML (data-...)
-            const titulo = item.getAttribute("data-titulo");
-            const img = item.getAttribute("data-img");
-            const desc = item.getAttribute("data-desc");
+    if(modal) { // Verifica se o modal existe na página para evitar erros
+        // Função para abrir o modal
+        procItems.forEach(item => {
+            item.addEventListener("click", () => {
+                const titulo = item.getAttribute("data-titulo");
+                const img = item.getAttribute("data-img");
+                const desc = item.getAttribute("data-desc");
 
-            // Coloca esses dados dentro do modal
-            modalTitulo.textContent = titulo;
-            modalImg.src = img;
-            modalDesc.textContent = desc;
+                modalTitulo.textContent = titulo;
+                modalImg.src = img;
+                modalDesc.textContent = desc;
 
-            // Mostra o modal
-            modal.classList.add("active");
+                modal.classList.add("active");
+            });
         });
-    });
 
-    // Função para fechar o modal
-    function fecharModal() {
-        modal.classList.remove("active");
-    }
-
-    // Fecha ao clicar no X
-    if(closeBtn) {
-        closeBtn.addEventListener("click", fecharModal);
-    }
-
-    // Fecha ao clicar fora da caixa branca (no fundo escuro)
-    window.addEventListener("click", (e) => {
-        if (e.target === modal) {
-            fecharModal();
+        // Função para fechar o modal
+        function fecharModal() {
+            modal.classList.remove("active");
         }
-    });
-    
-    // Torna a função fecharModal global para o botão "Agendar" usar
-    window.fecharModal = fecharModal;
+
+        // Fecha ao clicar no X
+        if(closeBtn) {
+            closeBtn.addEventListener("click", fecharModal);
+        }
+
+        // Fecha ao clicar fora da caixa branca
+        window.addEventListener("click", (e) => {
+            if (e.target === modal) {
+                fecharModal();
+            }
+        });
+        
+        // Torna global para o botão "Quero Agendar Este"
+        window.fecharModal = fecharModal;
+    }
 });
