@@ -39,7 +39,7 @@ app.post('/api/salvar-contato', async (req, res) => {
         console.log(`✅ Salvo localmente (ID: ${idLocal})`);
 
         // --- AQUI ENTRA SUA URL ---
-        const GOOGLE_URL = "https://script.google.com/macros/s/AKfycbwF0wrGIA3icPjV0Xdr86svx8YtUf67IMAcJhG7NQ6q7m6OOBCApYzWJho3B7KBTzU7/exec"; 
+        const GOOGLE_URL = "https://script.google.com/macros/s/AKfycbx9b0l_cM1i1SHzDT0Km7pXONgWvQKgcKMXfWaer2VLQ1APk09suMnAUDU1GdsYS1rDRA/exec"; 
         
         // Backup na Nuvem
         if (GOOGLE_URL.includes("/exec")) {
